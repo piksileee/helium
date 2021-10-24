@@ -32,19 +32,8 @@ class TimeCommand extends Command {
     }
   }
 
-class HiCommand extends Command {
-    constructor() {
-      super({
-        name: "hi",
-        description: "Hi! Hello!",
-        usage: "[p]hi",
-        requiredPermission: UserPermission.USER,
-      });
-    }
-}
-
 export default {
     name: "Test Commands",
     description: "Only for testing purposes",
-    commands: [TestCommand, TimeCommand, HiCommand],
+    commands: [TestCommand, TimeCommand],
 };
