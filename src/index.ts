@@ -1,4 +1,5 @@
 import "dotenv/config";
+import settings from "../settings.config";
 import { Intents, Constants, Message } from 'discord.js';
 import { HeliumClient } from "../internal";
 
@@ -13,4 +14,4 @@ let client = new HeliumClient({
 client.loadFeature(require("./features/util"));
 client.loadFeature(require("./features/test"));
 
-client.login(process.env.TOKEN);
+client.login(settings.token);

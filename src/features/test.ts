@@ -1,4 +1,5 @@
 import { Message, MessageEmbed } from "discord.js";
+import settings from "../../settings.config";
 import { Command, HeliumClient, UserPermission } from "../../internal";
 
 class TestCommand extends Command {
@@ -7,33 +8,17 @@ class TestCommand extends Command {
         name: "test",
         description: "Test, test, test!",
         usage: "[p]test",
-        requiredPermission: UserPermission.USER,
+        requiredPermission: UserPermission.BOT_OWNER,
       });
     }
   
     exec({ message }: { message: Message }) {
-      message.channel.send(`Test!`);
-    }
-  }
-
-class TimeCommand extends Command {
-    constructor() {
-      super({
-        name: "time",
-        description: "Time? Machine?",
-        usage: "[p]time",
-        requiredPermission: UserPermission.USER,
-      });
-    }
-  
-    async exec({ message }: { message: Message }) {
-        const now = new Date();
-        await message.reply(`${now.getHours()} : ${now.getMinutes()}`);
+      message.channel.send(settings.testmsg);
     }
   }
 
 export default {
     name: "Test Commands",
     description: "Only for testing purposes",
-    commands: [TestCommand, TimeCommand],
+    commands: [TestCommand],
 };

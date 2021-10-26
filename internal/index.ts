@@ -1,4 +1,5 @@
 import { Client, ClientEvents, ClientOptions, Message, Presence } from "discord.js";
+import settings from "../settings.config";
 import { Guild, PrismaClient } from "@prisma/client";
 import { ThreadAutoArchiveDuration } from "discord-api-types";
 enum UserPermission {
@@ -59,7 +60,7 @@ class HeliumClient extends Client {
 
   readyEvent() {
     this.user?.setPresence({ status: "online" }),
-    this.user?.setActivity("h!help", {type: "LISTENING"}),
+    this.user?.setActivity(`h!help`, {type: "LISTENING"}),
 
     console.log(this.user?.tag ? `Logged in as ${this.user.tag}` : "Failed to Login!");
 
@@ -140,7 +141,7 @@ class HeliumClient extends Client {
         break;
 
       case UserPermission.BOT_OWNER:
-        if (message.author.id == '526469187703406629') {
+        if (message.author.id == `${settings.devs}`) {
           command.exec({
             message,
             bot: this,
