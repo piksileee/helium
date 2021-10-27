@@ -8,12 +8,12 @@ class TestCommand extends Command {
         name: "test",
         description: "Test, test, test!",
         usage: "[p]test",
-        requiredPermission: UserPermission.BOT_OWNER,
+        requiredPermission: UserPermission.USER,
       });
     }
   
     exec({ message }: { message: Message }) {
-      message.channel.send(settings.testmsg);
+      message.reply(settings.testmsg);
     }
   }
 
