@@ -3,7 +3,7 @@ import settings from "../settings.config";
 import { Intents, Constants, Message, User } from 'discord.js';
 import { HeliumClient } from "../internal";
 
-let client = new HeliumClient({
+export let client = new HeliumClient({
   intents: [
     Intents.FLAGS.DIRECT_MESSAGES,
     Intents.FLAGS.GUILDS,

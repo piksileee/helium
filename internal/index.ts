@@ -3,6 +3,7 @@ import settings from "../settings.config";
 import { Guild, PrismaClient } from "@prisma/client";
 import { ThreadAutoArchiveDuration } from "discord-api-types";
 import * as logger from "../status/logger";
+import { client } from "../src/index";
 
 enum UserPermission {
   USER,
@@ -64,9 +65,12 @@ class HeliumClient extends Client {
     this.user?.setPresence({ status: "online" }),
     this.user?.setActivity(`h!help`, {type: "LISTENING"}),
 
-    logger.log(this.user?.tag ? `Logged in as ${this.user.tag}` : "Failed to Login!");
+    logger.log(this.user?.tag ? `Logged in as ${this.user.tag}` : "Failed to login!");
 
     logger.log(`Loaded ${this.Commands.size} commands`);
+
+    const Guilds = client.guilds.cache.map(guild => guild.id);
+    console.log(Guilds)
   }
 
   loadFeature(command: any) {

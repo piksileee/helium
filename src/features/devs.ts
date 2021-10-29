@@ -14,6 +14,8 @@ class DevsCommand extends Command {
   
     exec({ message }: { message: Message }) {
       message.reply('Nothing yet!');
+      
+      
     }
   }
 
