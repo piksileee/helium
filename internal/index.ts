@@ -17,6 +17,7 @@ type CommandOptions = {
   description: string;
   usage: string;
   requiredPermission: UserPermission;
+  category: string;
 };
 
 class Command {
@@ -24,12 +25,14 @@ class Command {
   public description: string;
   public usage: string;
   public requiredPermission: UserPermission;
+  public category: string;
 
   constructor(options: CommandOptions) {
     this.name = options.name;
     this.description = options.description;
     this.usage = options.usage;
     this.requiredPermission = options.requiredPermission;
+    this.category = options.category;
   }
   exec({
     message,
@@ -51,6 +54,7 @@ class Event {}
 class HeliumClient extends Client {
   public Prisma: PrismaClient = new PrismaClient();
   public Commands: Map<string, Command> = new Map();
+  interaction: {} | undefined;
 
   constructor(options: ClientOptions) {
     super(options);

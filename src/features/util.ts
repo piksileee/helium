@@ -8,41 +8,12 @@ class PingCommand extends Command {
       description: "Ping? Pong!",
       usage: "[p]ping",
       requiredPermission: UserPermission.USER,
+      category: "util",
     });
   }
 
   exec({ message }: { message: Message }) {
-    message.channel.send(`Pong!`);
-  }
-}
-
-class HelpCommand extends Command {
-  constructor() {
-    super({
-      name: "help",
-      description: "Help? Help!",
-      usage: "[p]help",
-      requiredPermission: UserPermission.USER,
-    });
-  }
-
-  exec({ message, bot }: { message: Message; bot: HeliumClient }) {
-    let embed = new MessageEmbed()
-      .setTitle("Command List")
-      .setAuthor(
-        "Helium",
-        "https://cdn.discordapp.com/attachments/892343969479016459/901524819072389190/Cat-banner-2.jpg"
-      )
-      .setColor("#FF3232")
-      .setFooter("Helium v1.0 | Beta 204.56");
-
-    bot.Commands.forEach((command: Command) => {
-      embed.addField(command.name, command.description);
-    });
-
-    message.author.send({ embeds: [embed] });
-
-    message.channel.send("We sent you a DM!").then(r => setTimeout(() => {r.delete()}, 5000));
+    message.reply(`Pong!`);
   }
 }
 
@@ -53,6 +24,7 @@ class PrefixCommand extends Command {
       description: "Set the server prefix",
       usage: "[p]prefix h!",
       requiredPermission: UserPermission.ADMIN,
+      category: "util",
     });
   }
 
@@ -85,6 +57,7 @@ class ExecCommand extends Command {
       description: "Execute some arbitrairy code on the server",
       usage: "[p]exec console.log('hello')",
       requiredPermission: UserPermission.BOT_OWNER,
+      category: "util",
     });
   }
   // This needs to be implemeted by someone else please nightmare nightmare nightmare
@@ -106,5 +79,5 @@ class ExecCommand extends Command {
 export default {
   name: "Utility Commands",
   description: "Some utility commands for utility purposes",
-  commands: [PingCommand, HelpCommand, PrefixCommand, ExecCommand],
+  commands: [PingCommand, PrefixCommand, ExecCommand],
 };

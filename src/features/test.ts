@@ -9,6 +9,7 @@ class TestCommand extends Command {
         description: "Test, test, test!",
         usage: "[p]test",
         requiredPermission: UserPermission.USER,
+        category: "test",
       });
     }
   
